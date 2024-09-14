@@ -10,29 +10,37 @@ public class keyhearer implements KeyListener {
             "Nathan is accelerated by gravity at a rate of 9.8 m/s^2", "Nathan has participated in 8 select ensembles",
             "Nathan has listened to 173,453 minutes of music on spotify as of 9/11/2024, 11:31",
             "Nathan catfished someone as an egirl over the summer (don't worry it was a joke)" };
-    final static Font font = new Font("Comic Sans", Font.BOLD, 15);
+    final static Font font = new Font("Courier New", Font.BOLD, 15);
+    final static Color hacker_green = new Color(36, 214, 69);
     public static int counter_letters = 1;
     public static int counter_spaces = 1;
     public static int start = 0;
     public static int counter_2 = 0;
     public static int line = 0;
-    DrawingPanel frame;
-    Graphics g;
+    public static int rand = 0;
+    DrawingPanel frame_2;
+    Graphics g_2;
 
     keyhearer(DrawingPanel frame) {
-        this.frame = frame;
+        this.frame_2 = frame;
     }
 
     @Override
     public void keyTyped(KeyEvent e) {
-        g = frame.getGraphics();
-        g.setFont(font);
-        g.setColor(Color.WHITE);
-        g.fillRect(0, 6 + (line * 15), 800, 800);
-        g.setColor(Color.BLACK);
-        g.drawString(Fact[counter_2].substring(start, counter_letters), 5, 17 + (line * 15));
-        counter_letters++;
-        counter_spaces++;
+        g_2 = frame_2.getGraphics();
+        g_2.setFont(font);
+        g_2.setColor(Color.BLACK);
+        g_2.fillRect(0, 6 + (line * 15), 1920, 1080);
+        g_2.setColor(hacker_green);
+        g_2.drawString(Fact[counter_2].substring(start, counter_letters), 5, 17 + (line * 15));
+        if (Fact[counter_2].length() - counter_letters != 0) {
+            rand = Math.min((int) (4 * Math.random() + 1), Fact[counter_2].length() - counter_letters);
+            counter_letters += rand;
+            counter_spaces += rand;
+        } else {
+            counter_letters++;
+            counter_spaces++;
+        }
         if (Fact[counter_2].length() < counter_letters) {
             counter_2++;
             line++;
@@ -40,7 +48,7 @@ public class keyhearer implements KeyListener {
             counter_spaces = 1;
             start = 0;
         }
-        if (counter_spaces > 90 && Fact[counter_2].substring(counter_letters - 1, counter_letters).equals(" ")) {
+        if (counter_spaces > 180 && Fact[counter_2].substring(counter_letters - 1, counter_letters).equals(" ")) {
             line++;
             counter_spaces = 1;
             start = counter_letters;
