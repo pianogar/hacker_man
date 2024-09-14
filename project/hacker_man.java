@@ -14,7 +14,5 @@ public class hacker_man {
         g.fillRect(0, 0, 1920, 1080);
         keyhearer_2 keyhearer_2 = new keyhearer_2(frame);
         frame.addKeyListener(keyhearer_2);
-        System.out.println("hse");
-
     }
 }
